@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "axident-theme";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+
+  /* Base Colors - Bazate pe componentele existente */
+  --color-base-100: #1e293b; /* slate-800 pentru fundaluri de card */
+  --color-base-200: #0f172a; /* slate-900 pentru fundaluri mai închise */
+  --color-base-300: #334155; /* slate-700 pentru fundaluri mai deschise */
+  --color-base-content: #f8fafc; /* slate-50 pentru text principal */
+
+  /* Culori primare - Albastru din componente */
+  --color-primary: #2563eb; /* blue-600 pentru acțiuni principale */
+  --color-primary-content: #ffffff; /* alb pentru text pe primary */
+  
+  /* Culori secundare */
+  --color-secondary: #1e40af; /* blue-800 pentru accente secundare */
+  --color-secondary-content: #ffffff; /* alb pentru text pe secondary */
+
+  /* Accent colors */
+  --color-accent: #3b82f6; /* blue-500 pentru hover/focus */
+  --color-accent-content: #ffffff; /* alb pentru text pe accent */
+
+  /* Culori neutre */
+  --color-neutral: #475569; /* slate-600 pentru borduri și elemente neutre */
+  --color-neutral-content: #f1f5f9; /* slate-100 pentru text pe neutre */
+
+  /* Culori pentru status */
+  --color-info: #60a5fa; /* blue-400 pentru informații */
+  --color-info-content: #ffffff;
+
+  --color-success: #22c55e; /* green-500 pentru succes */
+  --color-success-content: #ffffff;
+
+  --color-warning: #f59e0b; /* amber-500 pentru avertismente */
+  --color-warning-content: #ffffff;
+
+  --color-error: #ef4444; /* red-500 pentru erori */
+  --color-error-content: #ffffff;
+
+  /* Border și colțuri */
+  --radius-selector: 0.5rem; 
+  --radius-field: 0.5rem; /* Similare cu cele din componente */
+  --radius-box: 0.75rem;
+
+  /* Umbre și efecte */
+  --rounded-box: 0.75rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 0.375rem;
+  --animation-btn: 0.25s;
+  --animation-input: 0.2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+
+  /* Border general */
+  --border: 1px;
+  --border-color: var(--color-neutral);
+}
