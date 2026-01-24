@@ -1,9 +1,16 @@
 function Navbar() {
+  const home = 
+    {
+      link: "./home",
+      name: "Home",
+      icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+    }
+
   return (
     <nav className="bg-white shadow-sm">
       <div className="flex justify-between items-center h-16 px-6">
         <div className="flex items-center">
-          <a className="text-xl font-semibold text-blue-600">AxiDent</a>
+          <a className="text-xl font-semibold text-blue-600" href={home.link}>AxiDent</a>
         </div>
         <div className="flex items-center space-x-6">
           <button className="p-1 rounded-full hover:bg-gray-100 text-gray-600 hover:text-gray-800">
