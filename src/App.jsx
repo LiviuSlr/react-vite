@@ -1,6 +1,4 @@
-// Routing
-
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/home";
 import LogBook from "./pages/logbook";
 import Login from "./pages/auth/login";
@@ -10,11 +8,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/logbook" element={<LogBook />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/logbook" element={<LogBook />} />
       </Routes>
     </BrowserRouter>
   );
