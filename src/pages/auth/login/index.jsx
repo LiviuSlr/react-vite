@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,12 +19,19 @@ export default function Login() {
       return;
     }
 
-    if (email === "test@test.com" && password === "1234") {
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (
+      savedUser &&
+      email === savedUser.email &&
+      password === savedUser.password
+    ) {
       navigate("/home");
     } else {
       setError("Invalid email or password");
     }
-  };
+};
+
 
   return (
     <main className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-blue-950 to-blue-900 p-4">
@@ -31,6 +41,12 @@ export default function Login() {
             <h2 className="text-3xl font-bold text-white">Welcome Back</h2>
             <p className="text-slate-400 mt-2">Sign in to your account</p>
           </div>
+
+          {location.state?.fromSignup && (
+            <p className="text-green-400 text-center mb-4">
+              Account created successfully. Please log in.
+            </p>
+          )}
 
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
