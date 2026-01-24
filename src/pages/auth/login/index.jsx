@@ -1,4 +1,28 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    if (email === "test@test.com" && password === "1234") {
+      navigate("/home");
+    } else {
+      setError("Invalid email or password");
+    }
+  };
+
   return (
     <main className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-blue-950 to-blue-900 p-4">
       <div className="card w-full max-w-md shrink-0 shadow-2xl bg-slate-800 rounded-2xl overflow-hidden">
@@ -8,13 +32,15 @@ export default function Login() {
             <p className="text-slate-400 mt-2">Sign in to your account</p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="label">
                 <span className="label-text text-slate-300">Email Address</span>
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input input-bordered w-full bg-slate-700 border-slate-600 text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                 placeholder="your@email.com"
                 required
@@ -33,6 +59,8 @@ export default function Login() {
               </label>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="input input-bordered w-full bg-slate-700 border-slate-600 text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                 placeholder="••••••••"
                 required
@@ -50,11 +78,17 @@ export default function Login() {
               </label>
             </div>
 
+            {error && (
+                <p className="text-red-400 text-sm text-center">
+                  {error}
+                </p>
+              )}
+
             <button
               type="submit"
               className="btn btn-primary w-full rounded-lg bg-blue-600 border-none hover:bg-blue-700 text-white py-3"
             >
-              Sign In
+                Sign In           
             </button>
 
             <div className="divider text-slate-400 before:bg-slate-600 after:bg-slate-600">
@@ -89,5 +123,6 @@ export default function Login() {
         </div>
       </div>
     </main>
+    
   );
 }
