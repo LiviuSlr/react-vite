@@ -1,14 +1,45 @@
+import { useState } from "react";
+import { useNavigate } from "react-router";
+
 export default function Signup() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ email, password })
+    );
+
+    navigate("/login", {
+      state: { fromSignup: true },
+    });
+  }; 
+
+
   return (
     <main className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-blue-950 to-blue-900 p-4">
       <div className="card w-full max-w-md shrink-0 shadow-2xl bg-slate-800 rounded-2xl overflow-hidden">
         <div className="card-body p-8">
           <div className="text-center mb-6">
             <h2 className="text-3xl font-bold text-white">Create Account</h2>
+            {error && (
+              <p className="text-red-400 text-center text-sm">{error}</p>
+            )}
             <p className="text-slate-400 mt-2">Join our platform today</p>
           </div>
 
-          <form className="space-y-4">
+          <form className="space-y-4"  onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="label">
@@ -40,6 +71,8 @@ export default function Signup() {
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input input-bordered w-full bg-slate-700 border-slate-600 text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                 placeholder="your@email.com"
                 required
@@ -88,6 +121,8 @@ export default function Signup() {
               </label>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="input input-bordered w-full bg-slate-700 border-slate-600 text-white rounded-lg focus:ring-2 focus:ring-blue-500"
                 placeholder="••••••••"
                 minLength="8"
