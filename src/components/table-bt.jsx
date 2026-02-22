@@ -151,16 +151,18 @@ export default function LogbookOrdersTable() {
         );
       } else {
         // CREATE
-        const payload = {
-        orderId: makeOrderId(),
+       const payload = {
+        sender: form.person,
         patient: form.patient,
+        work: form.workType,
         time: Number(form.time),
         status: form.status,
-        takenBy: "",                 // since column exists
-        files: "",                   // string column (store file names later)
-        price: Number(parsePrice(form.price)),
-        userId: user.$id,            // REQUIRED column ✅
-      };
+        takenBy: null,
+        files: "",
+        price: Number(form.price),
+        orderId: makeOrderId(),
+        userId: user.$id,
+        };
 
         const permissions = [
           Permission.read(Role.users()),
