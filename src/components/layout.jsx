@@ -3,19 +3,17 @@ import Sidebar from "./sidebar/sidebar";
 
 export default function Layout({ children }) {
   return (
-    <main className="w-screen h-screen flex">
-      {/* aside component */}
-      <div className="h-full border-transparent">
+    <div className="min-h-screen w-full flex bg-base-200">
+      {/* Sidebar column */}
+      <aside className="shrink-0">
         <Sidebar />
-      </div>
+      </aside>
 
-      <div className="w-full h-screen">
-        {/* <Navbar /> */}
-        <div className="w-full border-transparent">
-          <Navbar />
-        </div>
-        {children}
+      {/* Content column */}
+      <div className="flex-1 min-w-0">
+        <Navbar />
+        <main className="p-4 sm:p-6">{children}</main>
       </div>
-    </main>
+    </div>
   );
 }
